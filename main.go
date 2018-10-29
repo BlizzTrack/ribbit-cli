@@ -19,6 +19,11 @@ var (
 func process(c *cli.Context) error {
 	var game string
 	var mode string
+	if len(c.Args()) == 0 {
+		cli.ShowAppHelp(c)
+		return nil
+	}
+
 	if len(c.Args()) > 1 {
 		mode = strings.ToLower(c.Args()[1])
 		game = strings.ToLower(c.Args()[0])
