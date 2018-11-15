@@ -58,8 +58,15 @@ func process(c *cli.Context) error {
 		}
 		res = vers
 		break
+	case "cdns":
+		vers, err := client.CDNS(game)
+		if err != nil {
+			return err
+		}
+		res = vers
+		break
 	default:
-		return errors.New("supported modes: versions, bgdl")
+		return errors.New("supported modes: versions, bgdl, cdns")
 	}
 
 	litter.Dump(res)

@@ -1,6 +1,7 @@
 package ribbit
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -39,6 +40,24 @@ func (client *RibbitClient) Summary() ([]SummaryItem, error) {
 
 	var result []SummaryItem
 	mapstructure.Decode(parseFile(data), &result)
+
+	return result, nil
+}
+
+func (client *RibbitClient) CDNS(game string) ([]CdnItem, error) {
+	data, err := client.process(fmt.Sprintf("products/%s/cdns", game))
+	if err != nil {
+		return nil, err
+	}
+
+	var result []CdnItem
+	mapstructure.Decode(parseFile(data), &result)
+
+	for i := 0; i < len(result); i++ {
+		result[i].HostsList = strings.Split(result[i].Hosts, " ")
+		result[i].ServersList = strings.Split(result[i].Servers, " ")
+		result[i].Region = result[i].Name
+	}
 
 	return result, nil
 }
@@ -88,31 +107,23 @@ func (client *RibbitClient) process(call string) (string, error) {
 		return "", err
 	}
 
+	if env.Root == nil || env.Root.FirstChild == nil {
+		return "", errors.New("root or firstchild of root is empty")
+	}
+
 	return string(env.Root.FirstChild.Content), nil
 }
 
 func (item SummaryItem) Versions() ([]RegionItem, error) {
-	data, err := client.process(fmt.Sprintf("products/%s/versions", item.Product))
-	if err != nil {
-		return nil, err
-	}
-
-	var result []RegionItem
-	mapstructure.Decode(parseFile(data), &result)
-
-	return result, nil
+	return client.Versions(item.Product)
 }
 
 func (item SummaryItem) BGDL() ([]RegionItem, error) {
-	data, err := client.process(fmt.Sprintf("products/%s/bgdl", item.Product))
-	if err != nil {
-		return nil, err
-	}
+	return client.BGDL(item.Product)
+}
 
-	var result []RegionItem
-	mapstructure.Decode(parseFile(data), &result)
-
-	return result, nil
+func (item SummaryItem) CDNS() ([]CdnItem, error) {
+	return client.CDNS(item.Product)
 }
 
 // parser for version files... This will have to be changed to handle arrays in later build

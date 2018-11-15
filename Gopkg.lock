@@ -3,11 +3,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f05ef432d9d09dac931738c09b3a1dbae57d2036240900adc4144f64b455fbc7"
+  digest = "1:87cbe1164bcf6b4c89f31e848b0edc3687883bd758e8846e0b47f56c66ecc2a5"
   name = "github.com/blizztrack/ribbit-go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "8e8e3d187040866313b10b8bce567f329dac5268"
+  revision = "4e10065d9a19445022c4a5309debd80ddfce0680"
 
 [[projects]]
   branch = "master"
@@ -18,7 +18,7 @@
   revision = "57d518f124b0cf46ea2021f25a01396b3522e6fb"
 
 [[projects]]
-  digest = "1:d9669d4fec9c1388cad9b60b29b6dfcf8e566cc6051feb943d206a010b9c2d55"
+  digest = "1:f06079e30b1dd730cf16ebde31bcb28ceaf9f0bc2ae9c94ae14c6f951ca01af7"
   name = "github.com/jhillyerd/enmime"
   packages = [
     ".",
@@ -26,8 +26,8 @@
     "internal/stringutil",
   ]
   pruneopts = "UT"
-  revision = "85654dbd0eb90f53af73e54a440087b0a33c8ff7"
-  version = "v0.2.1"
+  revision = "d07d9bb0f85abb33d72bcb25bea96eb6e0809108"
+  version = "v0.3.0"
 
 [[projects]]
   digest = "1:cdb899c199f907ac9fb50495ec71212c95cb5b0e0a8ee0800da0238036091033"
@@ -86,7 +86,7 @@
     "html/atom",
   ]
   pruneopts = "UT"
-  revision = "c44066c5c816ec500d459a2a324a753f78531ae0"
+  revision = "adae6a3d119ae4890b46832a2e88a95adc62b8e7"
 
 [[projects]]
   digest = "1:fac0ee1d65e78b2167dd3b33f6330e01261e25bee3aca87989a64adb7a7357db"

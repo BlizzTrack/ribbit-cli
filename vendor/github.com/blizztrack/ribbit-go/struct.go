@@ -16,4 +16,15 @@ type (
 		Versionsname  string
 		Productconfig string
 	}
+
+	CdnItem struct {
+		Name        string `json:"-,omitempty"`
+		Region      string
+		Path        string
+		Hosts       string `json:"-,omitempty"`
+		HostsList   []string
+		Servers     string `json:"-,omitempty"`
+		ServersList []string
+		ConfigPath  string
+	}
 )
